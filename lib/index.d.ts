@@ -25,16 +25,21 @@ interface Validator {
 
 declare function validate(validator: Validator): RequestHandler;
 declare namespace validate {
+  export function options(opts: Validator['options']): void;
   export class ValidationError {
-    errors: Messages[];
-    status: number;
-    statusText: string;
-    message: "validation error";
+      public errors: Messages[];
+      public status: number;
+      public statusText: string;
+      public message: 'validation error';
+      constructor(errors: Array<Messages>, opts: Record<string, unknown>);
+      public toJSON(): Record<string, unknown>;
 
   }
   interface Messages {
-    message: string;
-    types: string;
+      messages: string[];
+      types: string[];
+      field?: string[];
+      location?: string;
   }
 }
 
