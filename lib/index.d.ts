@@ -36,9 +36,9 @@ declare namespace validate {
 
   }
   interface Messages {
-      messages: string[];
-      types: string[];
-      field?: string[];
+      message: string;
+      type: string;
+      path?: Array<number | string>;
       location?: string;
   }
 }
